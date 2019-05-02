@@ -1,9 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu May  2 10:03:46 2019
 
-@author: prestamour
-"""
 import random 
 
 e = 2.71828
