@@ -20,5 +20,13 @@ class OptionPricing:
         average = np.sum(np.amax(option_data, axis=1))/float(self.iteration)
 
         return np.exp(-1.0*self.rf*self.T)*average
+    
+    def put_option_simulation(self):
+        option_data = np.zeros([self.iteration, 2])
+        rand = random.gauss(0, 1, [1, self.iteration])
+        stock_price = self.S0*np.exp(self.T*(self.rf - 0.5*self.sigma**2)+self.sigma*np.sqrt(self.T)*rand)
+        option_data[:, 1] = self.K - stock_price
+        average = np.sum(np.amax(option_data, axis=1))/float(self.iteration)
 
-
+        return np.exp(-1.0*self.rf*self.T)*average
+    
