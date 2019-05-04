@@ -22,6 +22,7 @@ class OptionPricing:
         return np.exp(-1.0*self.rf*self.T)*average
     
     def put_option_simulation(self):
+        """Esta es la simulación de la opcion Put bajo el metodo de Monte Carlo""" 
         option_data = np.zeros([self.iteration, 2])
         rand = np.random.normal(0, 1, [1, self.iteration])
         stock_price = self.S0*np.exp(self.T*(self.rf - 0.5*self.sigma**2)+self.sigma*np.sqrt(self.T)*rand)
