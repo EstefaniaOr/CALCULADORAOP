@@ -1,7 +1,7 @@
 import numpy as np
 
 class OptionPricing:
-    def __init__(self, S0, K, T, rf, sigma, iteration):
+    def __init__(self, S0, K, T, rf, sigma, iteraciones):
         """Option Pricing representa los valores necesarios para calcular
             el valor de la opción que se está buscando"""
         self.S0 = S0
@@ -9,25 +9,25 @@ class OptionPricing:
         self.T = T
         self.rf = rf
         self.sigma = sigma
-        self.iteration = iteration
+        self.iteration = iteraciones
     
     def call_option_simulation(self):
         """Es la simulación de la opcion Call bajo el metodo de Monte Carlo"""        
-        option_data = np.zeros([self.iteration, 2])
-        rand = np.random.normal(0, 1, [1, self.iteration])
+        option_data = np.zeros([self.iteraciones, 2])
+        rand = np.random.normal(0, 1, [1, self.iteraciones])
         stock_price = self.S0*np.exp(self.T*(self.rf - 0.5*self.sigma**2)+self.sigma*np.sqrt(self.T)*rand)
         option_data[:, 1] = stock_price - self.K
-        average = np.sum(np.amax(option_data, axis=1))/float(self.iteration)
+        average = np.sum(np.amax(option_data, axis=1))/float(self.iteraciones)
 
         return np.exp(-1.0*self.rf*self.T)*average
     
     def put_option_simulation(self):
         """Esta es la simulación de la opcion Put bajo el metodo de Monte Carlo""" 
-        option_data = np.zeros([self.iteration, 2])
-        rand = np.random.normal(0, 1, [1, self.iteration])
+        option_data = np.zeros([self.iteraciones, 2])
+        rand = np.random.normal(0, 1, [1, self.iteraciones])
         stock_price = self.S0*np.exp(self.T*(self.rf - 0.5*self.sigma**2)+self.sigma*np.sqrt(self.T)*rand)
         option_data[:, 1] = self.K - stock_price
-        average = np.sum(np.amax(option_data, axis=1))/float(self.iteration)
+        average = np.sum(np.amax(option_data, axis=1))/float(self.iteraciones)
 
         return np.exp(-1.0*self.rf*self.T)*average
     
