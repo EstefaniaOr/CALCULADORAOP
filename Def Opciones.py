@@ -9,7 +9,7 @@ class OptionPricing:
         self.T = T
         self.rf = rf
         self.sigma = sigma
-        self.iteration = iteraciones
+        self.iteraciones = iteraciones
     
     def call_option_simulation(self):
         """Es la simulación de la opcion Call bajo el metodo de Monte Carlo"""        
