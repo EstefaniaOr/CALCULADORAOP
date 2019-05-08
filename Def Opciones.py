@@ -1,6 +1,6 @@
 import numpy as np
 
-class OptionPricing:
+class Option:
     def __init__(self, S0, K, T, rf, sigma, iteraciones):
         """Option Pricing representa los valores necesarios para calcular
             el valor de la opción que se está buscando"""
@@ -11,7 +11,7 @@ class OptionPricing:
         self.sigma = sigma
         self.iteraciones = iteraciones
     
-    def call_option_simulation(self):
+    def opcion_call(self):
         """Es la simulación de la opcion Call bajo el metodo de Monte Carlo"""        
         option_data = np.zeros([self.iteraciones, 2])
         rand = np.random.normal(0, 1, [1, self.iteraciones])
@@ -21,7 +21,7 @@ class OptionPricing:
 
         return np.exp(-1.0*self.rf*self.T)*average
     
-    def put_option_simulation(self):
+    def opcion_put(self):
         """Esta es la simulación de la opcion Put bajo el metodo de Monte Carlo""" 
         option_data = np.zeros([self.iteraciones, 2])
         rand = np.random.normal(0, 1, [1, self.iteraciones])
@@ -31,3 +31,13 @@ class OptionPricing:
 
         return np.exp(-1.0*self.rf*self.T)*average
     
+S0 = float(input("ingrese su S0: " )) 
+K = float(input("ingrese su K: " ))
+T = float(input("ingrese su T: " ))
+rf = float(input("ingrese su rf: " ))
+sigma = float(input("ingrese su sigma: " ))
+iteraciones = int(input("ingrese cuantas iteraciones desea: " ))
+
+opcion1 = Option(S0, K, T, rf, sigma, iteraciones)
+print("Precio de la opcion call : ", opcion1.opcion_call())
+print("Precio de la opcion put: ", opcion1.opcion_put())    
