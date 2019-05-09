@@ -31,11 +31,11 @@ class Option:
 
         return np.exp(-1.0*self.rf*self.T)*average
     
-S0 = float(input("ingrese su S0: " )) 
-K = float(input("ingrese su K: " ))
-T = float(input("ingrese su T: " ))
-rf = float(input("ingrese su rf: " ))
-sigma = float(input("ingrese su sigma: " ))
+S0 = float(input("ingrese su Asset Price: " )) 
+K = float(input("ingrese su Strike Price: " ))
+T = float(input("ingrese su Time: " ))
+rf = float(input("ingrese su Free Rate: " ))
+sigma = float(input("ingrese su Volatility: " ))
 iteraciones = int(input("ingrese cuantas iteraciones desea: " ))
 
 opcion1 = Option(S0, K, T, rf, sigma, iteraciones)
