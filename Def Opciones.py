@@ -38,6 +38,23 @@ rf = float(input("ingrese su Free Rate: " ))
 sigma = float(input("ingrese su Volatility: " ))
 iteraciones = int(input("ingrese cuantas iteraciones desea: " ))
 
+def validar_valores (objeto):
+    if S0 <= 0: 
+        return "su S0 debe ser un valor positivo"
+    elif K <= 0:  
+        return "su S0 debe ser un valor positivo"
+    elif T <= 0:  
+        return "su S0 debe ser un valor positivo"    
+    elif iteraciones <= 0:  
+        return "sus iteraciones deben ser caantidades positivas"
+    else:
+        return objeto
+        
+def both_prices(objeto):
+    if objeto != validar_valores(objeto):
+        return validar_valores(objeto)
+    else: 
+        return "El precio de su opción put es {0} y el precio de su opción call es {1}".format(objeto.opcion_call(),objeto.opcion_put())
+    
 opcion1 = Option(S0, K, T, rf, sigma, iteraciones)
-print("Precio de la opcion call : ", opcion1.opcion_call())
-print("Precio de la opcion put: ", opcion1.opcion_put())    
+print(both_prices(opcion1))
