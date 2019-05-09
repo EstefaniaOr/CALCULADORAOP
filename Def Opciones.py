@@ -33,20 +33,20 @@ class Option:
     
 S0 = float(input("ingrese su Asset Price: " )) 
 K = float(input("ingrese su Strike Price: " ))
-T = float(input("ingrese su Time: " ))
+T = float(input("ingrese su Tiempo: " ))
 rf = float(input("ingrese su Free Rate: " ))
 sigma = float(input("ingrese su Volatility: " ))
 iteraciones = int(input("ingrese cuantas iteraciones desea: " ))
 
 def validar_valores (objeto):
     if S0 <= 0: 
-        return "su S0 debe ser un valor positivo"
+        return "su Asset Price debe ser un valor positivo"
     elif K <= 0:  
-        return "su S0 debe ser un valor positivo"
+        return "su Strike Price debe ser un valor positivo"
     elif T <= 0:  
-        return "su S0 debe ser un valor positivo"    
+        return "su tiempo debe ser un valor positivo"    
     elif iteraciones <= 0:  
-        return "sus iteraciones deben ser caantidades positivas"
+        return "sus iteraciones deben ser cantidades positivas"
     else:
         return objeto
         
