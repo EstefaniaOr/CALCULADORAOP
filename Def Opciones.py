@@ -45,6 +45,8 @@ def validar_valores (objeto):
         return "su Strike Price debe ser un valor positivo"
     elif T <= 0:  
         return "su tiempo debe ser un valor positivo"    
+    elif rf <= 0:  
+        return "su Free Rate debe ser un valor positivo"
     elif iteraciones <= 0:  
         return "sus iteraciones deben ser cantidades positivas"
     else:
