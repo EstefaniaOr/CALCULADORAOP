@@ -13,44 +13,44 @@ import tkinter as tk
      
 def opcion_call():
         """Es la simulación de la opcion Call bajo el metodo de Monte Carlo"""        
-        option_data = zeros([int(entrada6.get()), 2])
-        rand = random.normal(0, 1, [1, int(entrada6.get())])
-        stock_price = float(entrada1.get())*exp(float(entrada5.get())*(float(entrada4.get()) - 0.5*float(entrada3.get())**2)+float(entrada3.get())*sqrt(float(entrada5.get()))*rand)
-        option_data[:, 1] = stock_price - float(entrada2.get())
-        average = sum(amax(option_data, axis=1))/float(entrada6.get())
+        option_data = zeros([int(iteraciones.get()), 2])
+        rand = random.normal(0, 1, [1, int(iteraciones.get())])
+        stock_price = float(assetprice.get())*exp(float(tiempo.get())*(float(rate.get()) - 0.5*float(volatility.get())**2)+float(volatility.get())*sqrt(float(tiempo.get()))*rand)
+        option_data[:, 1] = stock_price - float(strikeprice.get())
+        average = sum(amax(option_data, axis=1))/float(iteraciones.get())
 
-        return var.set(exp(-1.0*float(entrada4.get())*float(entrada5.get()))*average)
+        return var.set(exp(-1.0*float(rate.get())*float(tiempo.get()))*average)
 
 def opcion_put():
         """Esta es la simulación de la opcion Put bajo el metodo de Monte Carlo""" 
-        option_data = zeros([int(entrada6.get()), 2])
-        rand = random.normal(0, 1, [1, int(entrada6.get())])
-        stock_price = float(entrada1.get())*exp(float(entrada5.get())*(float(entrada4.get()) - 0.5*float(entrada3.get())**2)+float(entrada3.get())*sqrt(float(entrada5.get()))*rand)
-        option_data[:, 1] = float(entrada2.get()) - stock_price
-        average = sum(amax(option_data, axis=1))/float(entrada6.get())
+        option_data = zeros([int(iteraciones.get()), 2])
+        rand = random.normal(0, 1, [1, int(iteraciones.get())])
+        stock_price = float(assetprice.get())*exp(float(tiempo.get())*(float(rate.get()) - 0.5*float(volatility.get())**2)+float(volatility.get())*sqrt(float(tiempo.get()))*rand)
+        option_data[:, 1] = float(strikeprice.get()) - stock_price
+        average = sum(amax(option_data, axis=1))/float(iteraciones.get())
 
-        return var.set(exp(-1.0*float(entrada4.get())*float(entrada5.get()))*average)
+        return var.set(exp(-1.0*float(rate.get())*float(tiempo.get()))*average)
     
 def validar_valores_call ():
-    if float(entrada1.get()) <= 0: 
+    if float(assetprice.get()) <= 0: 
         return var.set("su S0 debe ser un valor positivo")
-    elif float(entrada2.get()) <= 0:  
+    elif float(strikeprice.get()) <= 0:  
         return var.set("su S0 debe ser un valor positivo")
-    elif float(entrada5.get()) <= 0:  
+    elif float(tiempo.get()) <= 0:  
         return var.set("su S0 debe ser un valor positivo")    
-    elif int(entrada6.get()) <= 0:  
+    elif int(iteraciones.get()) <= 0:  
         return var.set("sus iteraciones deben ser caantidades positivas")
     else:
         return opcion_call()
     
 def validar_valores_put ():
-    if float(entrada1.get()) <= 0: 
+    if float(assetprice.get()) <= 0: 
         return var.set("su S0 debe ser un valor positivo")
-    elif float(entrada2.get()) <= 0:  
+    elif float(strikeprice.get()) <= 0:  
         return var.set("su S0 debe ser un valor positivo")
-    elif float(entrada5.get()) <= 0:  
+    elif float(tiempo.get()) <= 0:  
         return var.set("su S0 debe ser un valor positivo")    
-    elif int(entrada6.get()) <= 0:  
+    elif int(iteraciones.get()) <= 0:  
         return var.set("sus iteraciones deben ser caantidades positivas")
     else:
         return opcion_put()
@@ -58,38 +58,38 @@ def validar_valores_put ():
 ventana = tk.Tk()
 ventana.title("Ventana")
 ventana.geometry("580x600")
-ventana.configure(background = "blue")
+ventana.configure(background = "green")
 var = tk.StringVar()
 
 e1 = tk.Label(ventana, text = "ingrese su Asset Price: ", bg = "black", fg = "white")
 e1.pack(padx = 5, pady = 4, ipadx = 5, ipady = 5, fill = tk.X)
-entrada1 = tk.Entry(ventana)
-entrada1.pack(fill = tk.X, padx = 5, pady = 5, ipadx = 5, ipady = 5)
+assetprice = tk.Entry(ventana)
+assetprice.pack(fill = tk.X, padx = 5, pady = 5, ipadx = 5, ipady = 5)
 
 e2 = tk.Label(ventana, text = "Strike Price: ", bg = "black", fg = "white")
 e2.pack(padx = 5, pady = 4, ipadx = 5, ipady = 5, fill = tk.X)
-entrada2 = tk.Entry(ventana)
-entrada2.pack(fill = tk.X, padx = 5, pady = 5, ipadx = 5, ipady = 5)
+strikeprice = tk.Entry(ventana)
+strikeprice.pack(fill = tk.X, padx = 5, pady = 5, ipadx = 5, ipady = 5)
 
 e3 = tk.Label(ventana, text = "Volatility: ", bg = "black", fg = "white")
 e3.pack(padx = 5, pady = 4, ipadx = 5, ipady = 5, fill = tk.X)
-entrada3 = tk.Entry(ventana)
-entrada3.pack(fill = tk.X, padx = 5, pady = 5, ipadx = 5, ipady = 5)
+volatility = tk.Entry(ventana)
+volatility.pack(fill = tk.X, padx = 5, pady = 5, ipadx = 5, ipady = 5)
 
 e4 = tk.Label(ventana, text = "Rate: ", bg = "black", fg = "white")
 e4.pack(padx = 5, pady = 4, ipadx = 5, ipady = 5, fill = tk.X)
-entrada4 = tk.Entry(ventana)
-entrada4.pack(fill = tk.X, padx = 5, pady = 5, ipadx = 5, ipady = 5)
+rate = tk.Entry(ventana)
+rate.pack(fill = tk.X, padx = 5, pady = 5, ipadx = 5, ipady = 5)
 
 e5 = tk.Label(ventana, text = "Tiempo: ", bg = "black", fg = "white")
 e5.pack(padx = 5, pady = 4, ipadx = 5, ipady = 5, fill = tk.X)
-entrada5 = tk.Entry(ventana)
-entrada5.pack(fill = tk.X, padx = 5, pady = 5, ipadx = 5, ipady = 5)
+tiempo = tk.Entry(ventana)
+tiempo.pack(fill = tk.X, padx = 5, pady = 5, ipadx = 5, ipady = 5)
 
 e6 = tk.Label(ventana, text = "Iteraciones: ", bg = "black", fg = "white")
 e6.pack(padx = 5, pady = 4, ipadx = 5, ipady = 5, fill = tk.X)
-entrada6 = tk.Entry(ventana)
-entrada6.pack(fill = tk.X, padx = 5, pady = 5, ipadx = 5, ipady = 5)
+iteraciones = tk.Entry(ventana)
+iteraciones.pack(fill = tk.X, padx = 5, pady = 5, ipadx = 5, ipady = 5)
 
 botoncalcularca = tk.Button(ventana, text = "Calcular opcion call", fg = "black", command = validar_valores_call )
 botoncalcularca.pack(side = tk.TOP)
