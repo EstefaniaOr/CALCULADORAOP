@@ -33,11 +33,11 @@ def opcion_put():
     
 def validar_valores_call ():
     if float(assetprice.get()) <= 0: 
-        return var.set("su S0 debe ser un valor positivo")
+        return var.set("su assetprice debe ser un valor positivo")
     elif float(strikeprice.get()) <= 0:  
-        return var.set("su S0 debe ser un valor positivo")
+        return var.set("su strikeprice debe ser un valor positivo")
     elif float(tiempo.get()) <= 0:  
-        return var.set("su S0 debe ser un valor positivo")    
+        return var.set("su tiempo debe ser un valor positivo")    
     elif int(iteraciones.get()) <= 0:  
         return var.set("sus iteraciones deben ser caantidades positivas")
     else:
@@ -45,11 +45,11 @@ def validar_valores_call ():
     
 def validar_valores_put ():
     if float(assetprice.get()) <= 0: 
-        return var.set("su S0 debe ser un valor positivo")
+        return var.set("su assetprice debe ser un valor positivo")
     elif float(strikeprice.get()) <= 0:  
-        return var.set("su S0 debe ser un valor positivo")
+        return var.set("su strikeprice debe ser un valor positivo")
     elif float(tiempo.get()) <= 0:  
-        return var.set("su S0 debe ser un valor positivo")    
+        return var.set("su tiempo debe ser un valor positivo")    
     elif int(iteraciones.get()) <= 0:  
         return var.set("sus iteraciones deben ser caantidades positivas")
     else:
